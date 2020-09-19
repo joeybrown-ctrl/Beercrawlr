@@ -9,7 +9,7 @@
 ```
 AS a beer-loving tourist, 
 WHEN I enter my current location into Beercrawlr, 
-THEN I am given the closest breweries and top 5 rated restaurants.
+THEN I am given the info of nearby breweries and top 5 rated restaurants.
 ```
 
 ## Acceptance Criteria
@@ -17,7 +17,7 @@ THEN I am given the closest breweries and top 5 rated restaurants.
 ```
 GIVEN an app that locates local breweries and highly-rated restaurants through form inputs
 WHEN I enter my current city
-THEN I am presented with the breweries closest to me
+THEN I am presented with local breweries
 WHEN I view a particular brewery
 THEN I am presented with their address, website URL, phone number and the type of brewery (microbrewery, bar, brewpub, etc)
 WHEN I have worked up an appetite after a day of enjoyable brews
