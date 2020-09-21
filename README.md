@@ -9,20 +9,22 @@
 ```
 AS a beer-loving tourist, 
 WHEN I enter my current location into Beercrawlr, 
-THEN I am given the closest breweries and top 5 rated restaurants.
+THEN I am given the closest breweries, bottle shops, cideries and highly-rated gastropubs.
 ```
 
 ## Acceptance Criteria
 
 ```
-GIVEN an app that locates local breweries and highly-rated restaurants through form inputs
+GIVEN an app that locates local breweries, bottle shops, cideries and highly-rated gastropubs through form inputs
 WHEN I enter my current city
-THEN I am presented with the breweries closest to me
-WHEN I view a particular brewery
-THEN I am presented with their address, website URL, phone number and the type of brewery (microbrewery, bar, brewpub, etc)
-WHEN I have worked up an appetite after a day of enjoyable brews
-THEN I search for nearby restaurants via form inputs
-WHEN presented with the top-five highly-rated restaurants near me
+THEN I am presented with two options: 'Thirsty?' or 'Thirsty & Hungry?'
+WHEN I choose 'Thirsty?'
+THEN I am given the information of local breweries, bottle shops and cideries
+WHEN I view a particular brewery, bottle shop or cidery
+THEN I am presented with their address, website URL, and phone number
+WHEN I choose 'Thirsty & Hungry'
+THEN I am presented with the top-five highly-rated local breweries and gastropubs that also serve food
+WHEN I view a particular food-serving brewery
 THEN I can view their cuisine, address, website URL and phone number
 ```
 
@@ -31,6 +33,7 @@ THEN I can view their cuisine, address, website URL and phone number
 
 * [Zomato API](https://developers.zomato.com/api)
 * [Open Brewery DB](https://www.openbrewerydb.org/)
+* [Insomnia](https://insomnia.rest/)
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [jQuery](https://jquery.com/)
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
