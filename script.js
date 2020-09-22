@@ -1,6 +1,6 @@
 //Variables
 
-const ZomatoKey = "88f5d4148f949c26ab2353fcf1db3a21";
+let ZomatoKey = "88f5d4148f949c26ab2353fcf1db3a21";
 let lat;
 let long;
 
@@ -43,6 +43,32 @@ function getBrewery() {
   });
 }
 
+//function to query Zomato to get restaurant names -->"hungry?"
+function getRestaurant() {
+  //static variables for now, but function will be written to accept city lat and long and then plug into the api call 
+  let city = "Seattle";
+  let zomatoLat = "&lat="+lat;
+  let zomatoLong ="$lon="+long;
+
+   let queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + city + "&entity_type=city&count=5&lon=-&sort=rating&order=asc";
+ 
+  $.ajax({
+    url: queryURL,
+    headers: {
+       'user-key' : "88f5d4148f949c26ab2353fcf1db3a21"
+    },
+    method: 'GET'
+ }).then(function(response) {
+   console.log(response)
+  
+   for (i = 0; i <= 5; i ++){
+     console.log(response.restaurants[i].restaurant.name)
+   }
+ }
+ )
+
+}
+
 
 
 
@@ -63,3 +89,4 @@ function getBrewery() {
 
 getLocation();
 getBrewery();
+getRestaurant();
