@@ -3,7 +3,7 @@
 let ZomatoKey = "88f5d4148f949c26ab2353fcf1db3a21";
 let lat;
 let long;
-
+let selectedCity = "";
 let breweryNameArray = [];
 //Functions
 
@@ -24,21 +24,24 @@ function getLocation() {
   }
 }
 //function to query OBDB to get brewery names --> "thirsty?"
-function getBrewery() {
-  //city will become a variable and/or parameter. 
-  //using seattle as a test
-  let city = "seattle";
+function getBrewery(selectedCity) {
+  let city = selectedCity;
   let queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city;
 
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function(response) {
-
+    //print out the results to verify functionality 
+    console.log(response);
     //adds list of breweries into an array
+    //OBDB returns 20 results or less, we only need to grab 5
     for (i = 0; i < response.length; i ++) {
       breweryNameArray.push(response[i].name);
     }
+
+
+    // Functions to write to HTML goes HERE
 
   });
 }
@@ -78,15 +81,20 @@ function getRestaurant() {
 
 //Click and Event Handlers 
 
-// example code from Homework to capture user data from text input field and then make it our parameter 
-// $(".btn").click(function () {
-//   let selectedCity = $("#userInput").val();
+//this is currently grabbing input from "thirsty" search 
+ $("#thirsty").click(function () {
+  let selectedCity = $("#thirstyInput").val();
+  getBrewery(selectedCity);
 
-// getLocation(selectedCity);
-// getBrewery(selectedCity);
+ });
 
-// });
+ //this is currently grabbing input from "hungry" search 
+ $("#hungry").click(function () {
 
-getLocation();
-getBrewery();
-getRestaurant();
+  //functions go in here 
+  console.log("HUNGRY WAS CLICKED!");
+ });
+
+//getLocation();
+//getBrewery();
+//getRestaurant();
