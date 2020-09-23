@@ -22,7 +22,7 @@ WHEN I choose 'Thirsty?'
 THEN I am given the information of local breweries, bottle shops and cideries
 WHEN I view a particular brewery, bottle shop or cidery
 THEN I am presented with their address, website URL, and phone number
-WHEN I choose 'Thirsty & Hungry'
+WHEN I choose 'Hungry?'
 THEN I am presented with the top-five highly-rated local breweries and gastropubs that also serve food
 WHEN I view a particular food-serving brewery
 THEN I can view their cuisine, address, website URL and phone number
