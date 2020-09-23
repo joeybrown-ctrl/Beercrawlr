@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    <!-- CDN link that didn't work -->
-    <!-- <link rel="stylesheet" href="/Styles/bulma.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -30,11 +28,37 @@
     <div class="container is-fluid">
         <div class="notification">
 
-
-
             <!-- <div class="columns"> -->
+            <div class="columns">
+                <div class="column is-one-third">
+
+                    <!-- input fields and buttons -->
+                    <label class="label">Thirsty?</label>
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input class="input is-focused" type="text" placeholder="Enter City">
+                        </div>
+                        <div class="control">
+                            <a class="button is-info is-hovered" id="Thirsty?">Search</a>
+                        </div>
+                    </div>
+
+                    <label class="label">Hungry?</label>
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input class="input is-focused" type="text" placeholder="Enter City">
+                        </div>
+                        <div class="control">
+                            <a class="button is-info is-hovered" id="Hungry?">Search</a>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="column is-two-thirds column is-pulled-right">
-                    <!-- <article class="message message is-medium">
+                    <article class="message message is-medium">
+
+                        <!-- message field where results of searches will populate -->
                         <div class="message-body">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus
                                 mi</strong>,
@@ -46,60 +70,18 @@
                             facilisis
                             sodales sem.
                         </div>
-                    </article> -->
+                    </article>
                 </div>
-            </div>
-
-        </div>
-
-    </div>
-
-            <div class="columns">
-                <div class="column is-one-third">
-
-                    <label class="label">Thirsty?</label>
-
-                    <div class="field has-addons">
-
-                        <div class="control">
-                            <input class="input is-focused" type="text" placeholder="Enter City">
-                        </div>
-
-                        <div class="control">
-                            <a class="button is-info is-hovered" id="Thirsty?">Search</a>
-                        </div>
-
-                    </div>
-
-
-
-
-                    <label class="label">Hungry?</label>
-
-                    <div class="field has-addons">
-
-                        <div class="control">
-                            <input class="input is-focused" type="text" placeholder="Enter City">
-                        </div>
-
-                        <div class="control">
-                            <a class="button is-info is-hovered" id="Hungry?">Search</a>
-                        </div>
-
-                    </div>
-
-                </div>
-
 
             </div>
 
         </div>
     </div>
 
+    <!-- footer -->
     <footer class="footer">
         <div class="content has-text-centered">
-            <h5><strong>Beercrawlr</strong> by <a href="https://github.com/joeybrown-ctrl/Beercrawlr">Team
-                    Steel</a>
+            <h5><strong>Beercrawlr</strong> by <a href="https://github.com/joeybrown-ctrl/Beercrawlr">Team Steel</a>
             </h5>
             <h4>&copy; 2020 Team Steel. All rights reserved.</h4>
         </div>
