@@ -47,11 +47,14 @@ function getBrewery(selectedCity) {
 }
 
 //function to query Zomato to get restaurant names -->"hungry?"
-function getRestaurant() {
+function getRestaurant(selectedCity) {
   //static variables for now, but function will be written to accept city lat and long and then plug into the api call 
-  let city = "Seattle";
+  let city = selectedCity;
   let zomatoLat = "&lat="+lat;
   let zomatoLong ="$lon="+long;
+
+  console.log(selectedCity);
+  console.log(city);
 
    let queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + city + "&entity_type=city&count=5&lon=-&sort=rating&order=asc";
  
@@ -63,9 +66,12 @@ function getRestaurant() {
     method: 'GET'
  }).then(function(response) {
    console.log(response)
-  
-   for (i = 0; i <= 5; i ++){
-     console.log(response.restaurants[i].restaurant.name)
+
+  const restaurants = response.restaurants;
+
+   for (i = 0; i < restaurants.length; i ++){
+     const restaurant = restaurants[i].restaurant;
+     console.log(restaurant.name);
    }
  }
  )
@@ -90,9 +96,10 @@ function getRestaurant() {
 
  //this is currently grabbing input from "hungry" search 
  $("#hungry").click(function () {
+  let selectedCity = $("#hungryInput").val();
 
-  //functions go in here 
-  console.log("HUNGRY WAS CLICKED!");
+  getRestaurant(selectedCity);
+
  });
 
 //getLocation();
