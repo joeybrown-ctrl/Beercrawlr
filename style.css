@@ -1,0 +1,32 @@
+.container {
+    border-style: solid;
+    
+}   
+
+h1 {
+    text-align: center;
+}
+
+.container1 {
+    margin: 50px;
+    border-style: hidden;
+    padding: 20px;
+    text-align: center;
+    float: left;
+}
+.row {
+    border-style: solid;
+    padding: 50px;
+}
+
+.button {
+    padding: 10px;
+    float: inline-end;
+}
+header {
+    border-style: solid;
+}
+
+#find-me {
+    padding: 40px;
+}
