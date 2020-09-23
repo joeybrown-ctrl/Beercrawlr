@@ -35,6 +35,7 @@ THEN I can view their cuisine, address, website URL and phone number
 * [Open Brewery DB](https://www.openbrewerydb.org/)
 * [Insomnia](https://insomnia.rest/)
 * [Visual Studio Code](https://code.visualstudio.com/)
+* [Bulma](https://bulma.io/)
 * [jQuery](https://jquery.com/)
 * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
