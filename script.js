@@ -7,7 +7,7 @@ let selectedCity = "";
 let breweryNameArray = [];
 //Functions
 
-//with user approval, grabs users coordinate data 
+//with user approval, grabs users coordinate data
 //will run on an onclick event when user selects "near me"
 
 function getLocation() {
@@ -15,8 +15,8 @@ function getLocation() {
     let newLocation = navigator.geolocation.getCurrentPosition(function (
       position
     ) {
-    lat = position.coords.latitude;
-    long = position.coords.longitude;
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
       console.log(position);
       console.log(lat);
       console.log(long);
@@ -31,77 +31,85 @@ function getBrewery(selectedCity) {
   $.ajax({
     url: queryURL,
     method: "GET",
-  }).then(function(response) {
-    //print out the results to verify functionality 
+  }).then(function (response) {
+    //print out the results to verify functionality
     console.log(response);
     //adds list of breweries into an array
     //OBDB returns 20 results or less, we only need to grab 5
-    for (i = 0; i < response.length; i ++) {
+    for (i = 0; i < response.length; i++) {
       breweryNameArray.push(response[i].name);
     }
 
-
     // Functions to write to HTML goes HERE
-
   });
 }
 
 //function to query Zomato to get restaurant names -->"hungry?"
 function getRestaurant(selectedCity) {
-  //static variables for now, but function will be written to accept city lat and long and then plug into the api call 
+  //static variables for now, but function will be written to accept city lat and long and then plug into the api call
   let city = selectedCity;
-  let zomatoLat = "&lat="+lat;
-  let zomatoLong ="$lon="+long;
+  let zomatoLat = "&lat=" + lat;
+  let zomatoLong = "$lon=" + long;
+  let cityID;
 
-  console.log(selectedCity);
-  console.log(city);
+  let cityIDURL = "https://developers.zomato.com/api/v2.1/cities?q=" + city;
+  // query Zomato to get City ID 
+  $.ajax({
+    url: cityIDURL,
+    headers: {
+      "user-key": "88f5d4148f949c26ab2353fcf1db3a21",
+    },
+    method: "GET",
+  }).then(function (response) {
 
-   let queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id=" + city + "&entity_type=city&count=5&lon=-&sort=rating&order=asc";
- 
+    // this takes the searched city and finds its Zomato ID, converts to string
+    cityID = response.location_suggestions[0].id;
+
+    cityID = cityID.toString();
+    console.log(typeof(cityID));
+    console.log(cityID);
+
+    //assign next query with acquired cityID
+    let queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&entity_type=city&count=15&sort=rating&order=desc";
+
+    //Query to get restaurants with city id 
+
   $.ajax({
     url: queryURL,
     headers: {
-       'user-key' : "88f5d4148f949c26ab2353fcf1db3a21"
+      "user-key": "88f5d4148f949c26ab2353fcf1db3a21",
     },
-    method: 'GET'
- }).then(function(response) {
-   console.log(response)
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
 
-  const restaurants = response.restaurants;
+    const restaurants = response.restaurants;
 
-   for (i = 0; i < restaurants.length; i ++){
-     const restaurant = restaurants[i].restaurant;
-     console.log(restaurant.name);
-   }
- }
- )
+    for (i = 0; i < restaurants.length; i++) {
+      const restaurant = restaurants[i].restaurant;
+      console.log(restaurant.name);
+    }
 
+   });
+
+
+  })  ;
 }
 
+//Click and Event Handlers
 
-
-
-
-
-
-
-//Click and Event Handlers 
-
-//this is currently grabbing input from "thirsty" search 
- $("#thirsty").click(function () {
+//this is currently grabbing input from "thirsty" search
+$("#thirsty").click(function () {
   let selectedCity = $("#thirstyInput").val();
   getBrewery(selectedCity);
+});
 
- });
+//this is currently grabbing input from "hungry" search
+$("#hungry").click(function () {
+  let selectedHungryCity = $("#hungryInput").val();
 
- //this is currently grabbing input from "hungry" search 
- $("#hungry").click(function () {
-  let selectedCity = $("#hungryInput").val();
+  getRestaurant(selectedHungryCity);
+});
 
-  getRestaurant(selectedCity);
-
- });
 
 //getLocation();
-//getBrewery();
-//getRestaurant();
