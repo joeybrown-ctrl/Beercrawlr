@@ -40,8 +40,10 @@ function getBrewery(selectedCity) {
 
     //writes to "name" of display cards
     for (i = 1; i < 4; i++) {
-      i = i.toString()
       $("#name"+i).text(response[i-1].name);
+      $("#type"+i).text(response[i-1].brewery_type);
+      console.log(response[i-1].website_url)
+      $("#link"+i).text("Website").attr("href", response[i-1].website_url);
     }
   });
 }
@@ -93,6 +95,7 @@ function getRestaurantByName(selectedCity) {
       const restaurant = restaurants[i-1].restaurant;
       i = i.toString()
       $("#name"+i).text((restaurant).name);
+
     }
 
    });
@@ -146,7 +149,10 @@ function getRestaurantByLoc() {
   });
 }
 
-
+function onLoad() {
+  let input = localStorage.getItem("city");
+  getBrewery(input);
+}
 //Click and Event Handlers
 
 //this is currently grabbing input from "thirsty" search
@@ -163,5 +169,6 @@ $("#hungry").click(function () {
   localStorage.setItem("city", selectedHungryCity);
 });
 
+onLoad();
 getLocation();
 
