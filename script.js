@@ -37,12 +37,12 @@ function getBrewery(selectedCity) {
     console.log(response);
     //adds list of breweries into an array
     //OBDB returns 20 results or less, we only need to grab 5
-    for (i = 0; i < response.length; i++) {
-      breweryNameArray.push(response[i].name);
+
+    //writes to "name" of display cards
+    for (i = 1; i < 4; i++) {
+      i = i.toString()
+      $("#name"+i).text(response[i-1].name);
     }
-
-    // Functions to write to HTML to INDEX goes HERE
-
   });
 }
 
@@ -86,11 +86,13 @@ function getRestaurantByName(selectedCity) {
 
     // code to write HTML to index goes HERE 
 
+    //writes to "name" of display cards
     const restaurants = response.restaurants;
 
-    for (i = 0; i < restaurants.length; i++) {
-      const restaurant = restaurants[i].restaurant;
-      console.log(restaurant.name);
+    for (i = 1; i < 4; i++) {
+      const restaurant = restaurants[i-1].restaurant;
+      i = i.toString()
+      $("#name"+i).text((restaurant).name);
     }
 
    });
@@ -117,6 +119,7 @@ function algoliaInput(input){
   });
 }
 //calling algolia function with input IDs as parameters
+
 algoliaInput("#thirstyInput")
 algoliaInput("#hungryInput")
 
@@ -144,21 +147,26 @@ function getRestaurantByLoc() {
 }
 
 
-
 //Click and Event Handlers
 
 //this is currently grabbing input from "thirsty" search
 $("#thirsty").click(function () {
   let selectedCity = $("#thirstyInput").val();
   getBrewery(selectedCity);
+  localStorage.setItem("city", selectedCity);
 });
 
 //this is currently grabbing input from "hungry" search
 $("#hungry").click(function () {
   let selectedHungryCity = $("#hungryInput").val();
-
   getRestaurantByName(selectedHungryCity);
+  localStorage.setItem("city", selectedHungryCity);
 });
 
 getLocation();
+
+
+
+
+//getLocation();
 
