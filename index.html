@@ -37,111 +37,116 @@
 
     <!-- container -->
     <div class="container is-fluid">
-        <div class="notification">
 
-            <!-- <div class="columns"> -->
+        <!-- hero image (might look into doing a carousel if we reach MVP) -->
+        <section class="hero">
+            <div class="hero-body">
+                <img src="images/radovan-rgJ1xwQsoJc-unsplash.jpg" alt="hero image">
+            </div>
+        </section>
+
+        <!-- hero element containing search input and buttons -->
+        <section class="hero is-dark">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns is-centered">
+                        <div class="column is-half">
+                            <div class="control">
+                                <input class="input is-focused" id="searchInput" type="text" placeholder="Enter City">
+                            </div>
+                            <div class="control level">
+                                <a class="button level-item has-text-centered mx-3 my-2 is-info is-hovered"
+                                    id="thirsty">Thirsty?</a>
+                                <a class="button level-item has-text-centered mx-3 my-2 is-info is-hovered"
+                                    id="hungry">Hungry?</a>
+                                <a class="button level-item has-text-centered mx-3 my-2 is-info is-hovered">Near Me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- first set of tiles calling OBDB -->
+        <div class="notification my-6">
             <div class="columns">
-                <div class="column is-one-third">
-
-                    <!-- input fields and buttons -->
-
-                    <label class="label">Thirsty?</label>
-                    <div class="field has-addons">
-                        <div class="control">
-                            <input class="input is-focused" id="thirstyInput" type="text" placeholder="Enter City">
-                        </div>
-                        <div class="control">
-                            <a class="button is-info is-hovered" id="thirsty">Search</a>
-                        </div>
-
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title" id="name1"></p>
+                            <p class="subtitle" id="type1"></p>
+                            <div class="content">
+                                <p><a id="link1"> </a></p>
+                                <img src="images/evan-dvorkin-NCmog4xinew-unsplash.jpg">
+                            </div>
+                        </article>
                     </div>
-
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title" id="name2"></p>
+                            <p class="subtitle" id="type2"></p>
+                            <div class="content">
+                                <p><a id="link2"> </a></p>
+                                <img src="images/elevate-9EY5ckCX9iQ-unsplash.jpg">
+                            </div>
+                        </article>
                     </div>
-                    <a class="button is-link is-outlined">Near Me</a>
-                    <label class="label">Hungry?</label>
-                    <div class="field has-addons">
-                        <div class="control">
-                            <input class="input is-focused" id="hungryInput" type="text" placeholder="Enter City">
-                        </div>
-                        <div class="control">
-                            <a class="button is-info is-hovered" id="hungry">Search</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <div class="label has-text-centered is-large">Top Breweries Found:</div>
-
-                <!--Start coding for cards here-->
-                <div class="column card is-left" style="width: 30%;">
-                    <header class="card-header">
-
-                        <p class="card-header-title" id="name1">
-
-
-                        </p>
-
-                    </header>
-                    <div class="card-content">
-                        <div class="content">
-                            <h6 id="type1"></h6>
-                            <h6><a id="link1"> </a>
-                            </h6>
-                            </h6>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="column card is-centered" style="width: 30%;">
-                    <header class="card-header">
-                        <p class="card-header-title" id="name2">
-
-                        </p>
-                    </header>
-                    <div class="card-content">
-                        <div class="content">
-                            <h6 id="type2"></h6>
-                            <h6><a id="link2"> </a>
-                            </h6>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="column card is-right" style="width: 30%;">
-                    <header class="card-header">
-                        <p class="card-header-title is-centered" id="name3">
-                        </p>
-                    </header>
-                    <div class="card-content">
-                        <div class="content">
-                            <h6 id="type3"></h6>
-                            <h6><a id="link3"> </a>
-                            </h6>
-                            </link>
-                        </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title" id="name3"></p>
+                            <p class="subtitle" id="type3"></p>
+                            <div class="content">
+                                <p><a id="link3"> </a></p>
+                                <img src="images/tatiana-rodriguez-D_Rfjj3XV8M-unsplash.jpg">
+                            </div>
+                        </article>
                     </div>
                 </div>
-
-
-
-
 
             </div>
         </div>
 
+        <!-- second set of tiles calling Zomato -->
+        <div class="notification my-6">
+            <div class="columns">
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">Hello World</p>
+                            <p class="subtitle">What is up?</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">Foo</p>
+                            <p class="subtitle">Bar</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">Third column</p>
+                            <p class="subtitle">With some content</p>
+                            <div class="content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu
+                                    pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis
+                                    feugiat facilisis.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- hero element to break up whitespace -->
+        <section class="hero is-dark is-medium">
+            <div class="hero-body">
+                <div class="container">
+                </div>
+            </div>
+        </section>
 
     </div>
-
-    </div>
-
-    </div>
-    </div>
-    <section class="section is-large"></section>
-
 
     <!-- footer -->
     <footer class="footer">
