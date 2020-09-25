@@ -33,6 +33,8 @@ THEN I can view their cuisine, address, website URL and phone number
 
 * [Zomato API](https://developers.zomato.com/api)
 * [Open Brewery DB](https://www.openbrewerydb.org/)
+* [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+* [Algolia API](https://community.algolia.com/places/api-clients.html)
 * [Insomnia](https://insomnia.rest/)
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Bulma](https://bulma.io/)

@@ -170,7 +170,9 @@ $("#hungry").click(function () {
 onLoad();
 getLocation();
 
+
 //calling algolia function with input IDs as parameters
 algoliaInput("#thirstyInput")
 algoliaInput("#hungryInput")
+
 
