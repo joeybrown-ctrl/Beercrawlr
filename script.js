@@ -119,6 +119,7 @@ function algoliaInput(input){
   });
 }
 //calling algolia function with input IDs as parameters
+
 algoliaInput("#thirstyInput")
 algoliaInput("#hungryInput")
 
@@ -146,20 +147,20 @@ function getRestaurantByLoc() {
 }
 
 
-
 //Click and Event Handlers
 
 //this is currently grabbing input from "thirsty" search
 $("#thirsty").click(function () {
   let selectedCity = $("#thirstyInput").val();
   getBrewery(selectedCity);
+  localStorage.setItem("city", selectedCity);
 });
 
 //this is currently grabbing input from "hungry" search
 $("#hungry").click(function () {
   let selectedHungryCity = $("#hungryInput").val();
-
   getRestaurantByName(selectedHungryCity);
+  localStorage.setItem("city", selectedHungryCity);
 });
 
 getLocation();
