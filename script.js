@@ -1,10 +1,10 @@
 //Variables
 
 let ZomatoKey = "88f5d4148f949c26ab2353fcf1db3a21";
-let lat;
-let long;
 let selectedCity = "";
-let breweryNameArray = []; //using it for testing purposes, might delete later 
+let breweryNameArray = []; 
+
+//using it for testing purposes, might delete later 
 
 //Functions
 
@@ -16,11 +16,12 @@ function getLocation() {
     let newLocation = navigator.geolocation.getCurrentPosition(function (
       position
     ) {
-      lat = position.coords.latitude;
-      long = position.coords.longitude;
+      let lat = position.coords.latitude;
+      let long = position.coords.longitude;
       console.log(position);
       console.log(lat);
       console.log(long);
+      getRestaurantByLoc(lat, long);
     });
   }
 }
@@ -38,10 +39,12 @@ function getBrewery(selectedCity) {
     //adds list of breweries into an array
     //OBDB returns 20 results or less, we only need to grab 5
 
-    //writes to "name" of display cards
-    for (i = 1; i < 4; i++) {
-      i = i.toString()
+    //writes content to display cards
+    for (let i = 1; i < 4; i++) {
       $("#name"+i).text(response[i-1].name);
+      $("#type"+i).text(response[i-1].brewery_type);
+      console.log(response[i-1].website_url)
+      $("#link"+i).text("Website").attr("href", response[i-1].website_url);
     }
   });
 }
@@ -93,6 +96,7 @@ function getRestaurantByName(selectedCity) {
       const restaurant = restaurants[i-1].restaurant;
       i = i.toString()
       $("#name"+i).text((restaurant).name);
+
     }
 
    });
@@ -100,7 +104,6 @@ function getRestaurantByName(selectedCity) {
 
   })  ;
 }
-
 
 //algolia function 
 function algoliaInput(input){
@@ -118,15 +121,13 @@ function algoliaInput(input){
     aroundLatLngViaIP: false,
   });
 }
-//calling algolia function with input IDs as parameters
-
-algoliaInput("#thirstyInput")
-algoliaInput("#hungryInput")
 
 //this works BUT it must  have lat and long first
 //read to add to click event
 //add error checking if a user denied location data sharing 
-function getRestaurantByLoc() {
+
+function getRestaurantByLoc(lat, long) {
+
   console.log(lat);
   console.log(long);
 
@@ -146,7 +147,10 @@ function getRestaurantByLoc() {
   });
 }
 
-
+function onLoad() {
+  let input = localStorage.getItem("city");
+  getBrewery(input);
+}
 //Click and Event Handlers
 
 //this is currently grabbing input from "thirsty" search
@@ -163,10 +167,12 @@ $("#hungry").click(function () {
   localStorage.setItem("city", selectedHungryCity);
 });
 
+onLoad();
 getLocation();
 
 
+//calling algolia function with input IDs as parameters
+algoliaInput("#thirstyInput")
+algoliaInput("#hungryInput")
 
-
-//getLocation();
 
