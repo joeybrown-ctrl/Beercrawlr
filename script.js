@@ -99,6 +99,27 @@ function getRestaurantByName(selectedCity) {
   })  ;
 }
 
+
+//algolia function 
+function algoliaInput(input){
+  places({
+    appId: 'plJQ1KF0K79P',
+    apiKey: 'bc174a9842192d2d3601b8b23345d187',
+    container: document.querySelector(input),
+    templates: {
+      value: function(suggestion) {
+        return suggestion.name;
+      }
+    }
+  }).configure({
+    type: 'city',
+    aroundLatLngViaIP: false,
+  });
+}
+//calling algolia function with input IDs as parameters
+algoliaInput("#thirstyInput")
+algoliaInput("#hungryInput")
+
 //this works BUT it must  have lat and long first
 //read to add to click event
 //add error checking if a user denied location data sharing 
@@ -121,6 +142,7 @@ function getRestaurantByLoc() {
 
   });
 }
+
 
 
 //Click and Event Handlers
