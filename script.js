@@ -4,7 +4,8 @@ let ZomatoKey = "88f5d4148f949c26ab2353fcf1db3a21";
 let lat;
 let long;
 let selectedCity = "";
-let breweryNameArray = [];
+let breweryNameArray = []; //using it for testing purposes, might delete later 
+
 //Functions
 
 //with user approval, grabs users coordinate data
@@ -36,20 +37,19 @@ function getBrewery(selectedCity) {
     console.log(response);
     //adds list of breweries into an array
     //OBDB returns 20 results or less, we only need to grab 5
-    for (i = 0; i < response.length; i++) {
-      breweryNameArray.push(response[i].name);
-    }
 
-    // Functions to write to HTML goes HERE
+    //writes to "name" of display cards
+    for (i = 1; i < 4; i++) {
+      i = i.toString()
+      $("#name"+i).text(response[i-1].name);
+    }
   });
 }
 
 //function to query Zomato to get restaurant names -->"hungry?"
-function getRestaurant(selectedCity) {
+function getRestaurantByName(selectedCity) {
   //static variables for now, but function will be written to accept city lat and long and then plug into the api call
   let city = selectedCity;
-  let zomatoLat = "&lat=" + lat;
-  let zomatoLong = "$lon=" + long;
   let cityID;
 
   let cityIDURL = "https://developers.zomato.com/api/v2.1/cities?q=" + city;
@@ -83,11 +83,16 @@ function getRestaurant(selectedCity) {
   }).then(function (response) {
     console.log(response);
 
+
+    // code to write HTML to index goes HERE 
+
+    //writes to "name" of display cards
     const restaurants = response.restaurants;
 
-    for (i = 0; i < restaurants.length; i++) {
-      const restaurant = restaurants[i].restaurant;
-      console.log(restaurant.name);
+    for (i = 1; i < 4; i++) {
+      const restaurant = restaurants[i-1].restaurant;
+      i = i.toString()
+      $("#name"+i).text((restaurant).name);
     }
 
    });
@@ -96,22 +101,72 @@ function getRestaurant(selectedCity) {
   })  ;
 }
 
+
+//algolia function 
+function algoliaInput(input){
+  places({
+    appId: 'plJQ1KF0K79P',
+    apiKey: 'bc174a9842192d2d3601b8b23345d187',
+    container: document.querySelector(input),
+    templates: {
+      value: function(suggestion) {
+        return suggestion.name;
+      }
+    }
+  }).configure({
+    type: 'city',
+    aroundLatLngViaIP: false,
+  });
+}
+//calling algolia function with input IDs as parameters
+
+algoliaInput("#thirstyInput")
+algoliaInput("#hungryInput")
+
+//this works BUT it must  have lat and long first
+//read to add to click event
+//add error checking if a user denied location data sharing 
+function getRestaurantByLoc() {
+  console.log(lat);
+  console.log(long);
+
+  let queryURL = "https://developers.zomato.com/api/v2.1/search?count=15&lat="+ lat +"&lon="+ long + "&sort=rating&order=desc";
+
+  $.ajax({
+    url: queryURL,
+    headers: {
+      "user-key": "88f5d4148f949c26ab2353fcf1db3a21",
+    },
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+
+    //code to write to HTML goes HERE
+
+  });
+}
+
+
 //Click and Event Handlers
 
 //this is currently grabbing input from "thirsty" search
 $("#thirsty").click(function () {
   let selectedCity = $("#thirstyInput").val();
   getBrewery(selectedCity);
+  localStorage.setItem("city", selectedCity);
 });
 
 //this is currently grabbing input from "hungry" search
 $("#hungry").click(function () {
   let selectedHungryCity = $("#hungryInput").val();
-
-  getRestaurant(selectedHungryCity);
+  getRestaurantByName(selectedHungryCity);
+  localStorage.setItem("city", selectedHungryCity);
 });
+
+getLocation();
 
 
 
 
 //getLocation();
+
