@@ -4,13 +4,12 @@ let ZomatoKey = "88f5d4148f949c26ab2353fcf1db3a21";
 let selectedCity = "";
 let breweryNameArray = []; 
 
-//using it for testing purposes, might delete later 
+
 
 //Functions
 
-//with user approval, grabs users coordinate data
-//will run on an onclick event when user selects "near me"
 
+//runs on click event, grabs user location and searchers Zomato API
 function getLocation() {
   if (navigator.geolocation) {
     let newLocation = navigator.geolocation.getCurrentPosition(function (
@@ -18,14 +17,12 @@ function getLocation() {
     ) {
       let lat = position.coords.latitude;
       let long = position.coords.longitude;
-      console.log(position);
-      console.log(lat);
-      console.log(long);
       getRestaurantByLoc(lat, long);
     });
   }
 }
-//function to query OBDB to get brewery names --> "thirsty?"
+
+//runs on click event, grabs and writes brewery information to index.html
 function getBrewery(selectedCity) {
   let city = selectedCity;
   let queryURL = "https://api.openbrewerydb.org/breweries?by_city=" + city;
@@ -66,14 +63,12 @@ function getBrewery(selectedCity) {
   });
 }
 
-//function to query Zomato to get restaurant names -->"hungry?"
+//runs on click event, grabs and writes restaurant information to index.html
 function getRestaurantByName(selectedCity) {
-  //static variables for now, but function will be written to accept city lat and long and then plug into the api call
   let city = selectedCity;
   let cityID;
 
-  let cityIDURL = "https://developers.zomato.com/api/v2.1/cities?q=" + city;
-  // query Zomato to get City ID 
+  let cityIDURL = "https://developers.zomato.com/api/v2.1/cities?q=" + city; 
   $.ajax({
     url: cityIDURL,
     headers: {
@@ -86,8 +81,7 @@ function getRestaurantByName(selectedCity) {
     cityID = response.location_suggestions[0].id;
 
     cityID = cityID.toString();
-    console.log(typeof(cityID));
-    console.log(cityID);
+   
 
     //assign next query with acquired cityID
     let queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id="+ cityID + "&entity_type=city&count=15&sort=rating&order=desc";
@@ -101,12 +95,7 @@ function getRestaurantByName(selectedCity) {
     },
     method: "GET",
   }).then(function (response) {
-    console.log(response);
 
-
-    // code to write HTML to index goes HERE 
-
-    //writes to "name" of display cards
     const restaurants = response.restaurants;
 
     for (i = 1; i < 7; i++) {
@@ -126,7 +115,7 @@ function getRestaurantByName(selectedCity) {
   })  ;
 }
 
-//algolia function 
+//adds algolia functionality to search bars
 function algoliaInput(input){
   places({
     appId: 'plJQ1KF0K79P',
@@ -143,14 +132,8 @@ function algoliaInput(input){
   });
 }
 
-//this works BUT it must  have lat and long first
-//read to add to click event
-//add error checking if a user denied location data sharing 
-
+//searches Zomato API by user location 
 function getRestaurantByLoc(lat, long) {
-
-  console.log(lat);
-  console.log(long);
 
   let queryURL = "https://developers.zomato.com/api/v2.1/search?count=15&lat="+ lat +"&lon="+ long + "&sort=rating&order=desc";
 
@@ -161,40 +144,48 @@ function getRestaurantByLoc(lat, long) {
     },
     method: "GET",
   }).then(function (response) {
-    console.log(response);
 
-    //code to write to HTML goes HERE
+    for (i = 1; i < 7; i++) {
+      const restaurants = response.restaurants;
+      const restaurant = restaurants[i-1].restaurant;
+      $("#name"+i).text((restaurant).name);
+      $("#type"+i).text("Restaurant Type: " + restaurant.establishment[0]);
+      $("#link"+i).text("Click Here for Menu: ").attr("href", restaurant.menu_url); 
+      $("#img"+i).attr("src", restaurant.thumb);
+
+      //add error catch for undefined restaurant type 
+
+    }
+    
 
   });
 }
 
+//writes last searched to page to avoid poor presentation
 function onLoad() {
   let input = localStorage.getItem("city");
   getBrewery(input);
 }
+
 //Click and Event Handlers
 
-//this is currently grabbing input from "thirsty" search
 $("#thirsty").click(function () {
   let selectedCity = $("#searchInput").val();
   getBrewery(selectedCity);
   localStorage.setItem("city", selectedCity);
 });
 
-//this is currently grabbing input from "hungry" search
 $("#hungry").click(function () {
   let selectedHungryCity = $("#searchInput").val();
   getRestaurantByName(selectedHungryCity);
   localStorage.setItem("city", selectedHungryCity);
 });
 
+$("#nearMe").click(function () {
+  console.log("i was clicked")
+  getLocation();
+});
+
 
 onLoad();
-getLocation();
-
-
-//calling algolia function with input ID as parameters
 algoliaInput("#searchInput")
-
-
-//note for Chris from Joey: we'll need to put in conditional logic to match the images to brewery type. I'm thinking if/else statements.
