@@ -41,21 +41,21 @@ function getBrewery(selectedCity) {
       // code here to pick right image based on brewery type 
 
       if (brewType === "micro") {
-        $("#img"+i).attr("src", "https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/tatiana-rodriguez-D_Rfjj3XV8M-unsplash.jpg");
+        $("#img"+i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/tatiana-rodriguez-D_Rfjj3XV8M-unsplash.jpg");
       } else if (brewType === "regional") {
-        $("#img"+i).attr("src", "https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/elevate-9EY5ckCX9iQ-unsplash.jpg");
+        $("#img"+i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/elevate-9EY5ckCX9iQ-unsplash.jpg");
       } else if (brewType === "brewpub") {
-        $("#img"+i).attr("src", "https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/evan-dvorkin-NCmog4xinew-unsplash.jpg");
+        $("#img"+i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/evan-dvorkin-NCmog4xinew-unsplash.jpg");
       } else if (brewType === "large") {
-        $("#img"+i).attr("src", "https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/daniel-vogel-sVothhm7iRI-unsplash.jpg");
+        $("#img"+i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/daniel-vogel-sVothhm7iRI-unsplash.jpg");
       } else if (brewType === "planning") {
-        $("#img"+i).attr("src", "https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/claude-piche-EHbtjmz7hvw-unsplash.jpg");
+        $("#img"+i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/claude-piche-EHbtjmz7hvw-unsplash.jpg");
       } else if (brewType === "bar") {
-        $("#img"+i).attr("src", "https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/luke-southern-gW7QRXDSvec-unsplash.jpg");
+        $("#img"+i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/luke-southern-gW7QRXDSvec-unsplash.jpg");
       } else if (brewType === "contract") {
-        $("#img"+i).attr("src", "https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/timothy-dykes-Lq1rOaigDoY-unsplash.jpg");
+        $("#img"+i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/fred-crandon-fulpvaLUX3A-unsplash.jpg");
       } else if (brewType === "proprietor") {
-        $("#img"+i).attr("src", "https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/radovan-rgJ1xwQsoJc-unsplash.jpg");
+        $("#img"+i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/radovan-rgJ1xwQsoJc-unsplash.jpg");
       }
 
       $("#link"+i).text("Click Here for Website: ").attr("href", response[i-1].website_url);
