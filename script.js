@@ -171,8 +171,8 @@ onLoad();
 getLocation();
 
 
-//calling algolia function with input IDs as parameters
-algoliaInput("#thirstyInput")
-algoliaInput("#hungryInput")
+//calling algolia function with input ID as parameters
+algoliaInput("#searchInput")
 
 
+//note for Chris from Joey: we'll need to put in conditional logic to match the images to brewery type. I'm thinking if/else statements.
