@@ -34,17 +34,34 @@ function getBrewery(selectedCity) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    //print out the results to verify functionality
-    console.log(response);
-    //adds list of breweries into an array
-    //OBDB returns 20 results or less, we only need to grab 5
-
+ 
     //writes content to display cards
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 7; i++) {
+      let brewType = response[i-1].brewery_type
       $("#name"+i).text(response[i-1].name);
-      $("#type"+i).text(response[i-1].brewery_type);
-      console.log(response[i-1].website_url)
-      $("#link"+i).text("Website").attr("href", response[i-1].website_url);
+      $("#type"+i).text("Brewery Type: " + brewType);
+
+      // code here to pick right image based on brewery type 
+
+      if (brewType === "micro") {
+        $("#img"+i).attr("src", "images/tatiana-rodriguez-D_Rfjj3XV8M-unsplash.jpg");
+      } else if (brewType === "regional") {
+        $("#img"+i).attr("src", "images/elevate-9EY5ckCX9iQ-unsplash.jpg");
+      } else if (brewType === "brewpub") {
+        $("#img"+i).attr("src", "images/evan-dvorkin-NCmog4xinew-unsplash.jpg");
+      } else if (brewType === "large") {
+        $("#img"+i).attr("src", "images/daniel-vogel-sVothhm7iRI-unsplash.jpg");
+      } else if (brewType === "planning") {
+        $("#img"+i).attr("src", "images/claude-piche-EHbtjmz7hvw-unsplash.jpg");
+      } else if (brewType === "bar") {
+        $("#img"+i).attr("src", "images/luke-southern-gW7QRXDSvec-unsplash.jpg");
+      } else if (brewType === "contract") {
+        $("#img"+i).attr("src", "images/timothy-dykes-Lq1rOaigDoY-unsplash.jpg");
+      } else if (brewType === "proprietor") {
+        $("#img"+i).attr("src", "images/radovan-rgJ1xwQsoJc-unsplash.jpg");
+      }
+
+      $("#link"+i).text("Click Here for Website: ").attr("href", response[i-1].website_url);
     }
   });
 }
@@ -92,10 +109,14 @@ function getRestaurantByName(selectedCity) {
     //writes to "name" of display cards
     const restaurants = response.restaurants;
 
-    for (i = 1; i < 4; i++) {
+    for (i = 1; i < 7; i++) {
       const restaurant = restaurants[i-1].restaurant;
-      i = i.toString()
       $("#name"+i).text((restaurant).name);
+      $("#type"+i).text("Restaurant Type: " + restaurant.establishment[0]);
+      $("#link"+i).text("Click Here for Menu: ").attr("href", restaurant.menu_url); 
+      $("#img"+i).attr("src", restaurant.thumb);
+
+      //add error catch for undefined restaurant type 
 
     }
 
@@ -155,17 +176,18 @@ function onLoad() {
 
 //this is currently grabbing input from "thirsty" search
 $("#thirsty").click(function () {
-  let selectedCity = $("#thirstyInput").val();
+  let selectedCity = $("#searchInput").val();
   getBrewery(selectedCity);
   localStorage.setItem("city", selectedCity);
 });
 
 //this is currently grabbing input from "hungry" search
 $("#hungry").click(function () {
-  let selectedHungryCity = $("#hungryInput").val();
+  let selectedHungryCity = $("#searchInput").val();
   getRestaurantByName(selectedHungryCity);
   localStorage.setItem("city", selectedHungryCity);
 });
+
 
 onLoad();
 getLocation();
