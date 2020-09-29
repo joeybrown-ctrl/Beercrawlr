@@ -113,10 +113,7 @@ function getRestaurantByName(selectedCity) {
         $("#img"+i).attr("src", "images/default.jpg");
       }
 
-    }
-
-
-    });
+    })
 
 
   });
@@ -197,4 +194,4 @@ $("#nearMe").click(function () {
 
 
 onLoad();
-algoliaInput("#searchInput")
+algoliaInput("#searchInput");
