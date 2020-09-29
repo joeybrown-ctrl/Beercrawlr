@@ -68,6 +68,7 @@ function getRestaurantByName(selectedCity) {
   let city = selectedCity;
   let cityID;
 
+
   let cityIDURL = "https://developers.zomato.com/api/v2.1/cities?q=" + city;
   $.ajax({
     url: cityIDURL,
@@ -110,18 +111,13 @@ function getRestaurantByName(selectedCity) {
       }
 
       if (restaurant.thumb === "") {
-        $("#img"+i).attr("src", "images/default.jpg");
+        $("#img" + i).attr("src", "images/default.jpg");
       }
 
-    }
-
-
     });
-
-
   });
-}
 
+};
 //adds algolia functionality to search bars
 function algoliaInput(input) {
   places({
@@ -163,7 +159,7 @@ function getRestaurantByLoc(lat, long) {
 
       //adds default image if no image content is present in Zomato 
       if (restaurant.thumb === "") {
-        $("#img"+i).attr("src", "images/default.jpg");
+        $("#img" + i).attr("src", "images/default.jpg");
       }
 
     }
@@ -198,4 +194,4 @@ $("#nearMe").click(function () {
 
 
 onLoad();
-algoliaInput("#searchInput")
+algoliaInput("#searchInput");
