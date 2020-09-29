@@ -1,6 +1,8 @@
-# Beercrawlr
+# BeerCrawlr
 
 **version 1.0.0**
+
+[For deployed version, click me](https://joeybrown-ctrl.github.io/Beercrawlr/)
 
 <br>
 
@@ -8,25 +10,32 @@
 
 ```
 AS a beer-loving tourist, 
-WHEN I enter my current location into Beercrawlr, 
-THEN I am given the closest breweries, bottle shops, cideries and highly-rated gastropubs.
+WHEN I enter a city, or my current location into BeerCrawlr, 
+THEN I am given the information of local breweries or restaurants.
 ```
 
 ## Acceptance Criteria
 
 ```
-GIVEN an app that locates local breweries, bottle shops, cideries and highly-rated gastropubs through form inputs
-WHEN I enter my current city
-THEN I am presented with two options: 'Thirsty?' or 'Thirsty & Hungry?'
+GIVEN an app that locates local breweries and restaurants through a search input
+WHEN I enter a city
+THEN I am presented with three buttons: 'Thirsty?', 'Hungry?', or 'Near Me'
 WHEN I choose 'Thirsty?'
-THEN I am given the information of local breweries, bottle shops and cideries
-WHEN I view a particular brewery, bottle shop or cidery
-THEN I am presented with their address, website URL, and phone number
+THEN I am given the information of local breweries
+WHEN I view a particular brewery
+THEN I am presented with the brewery type, and a link to their website
 WHEN I choose 'Hungry?'
-THEN I am presented with the top-five highly-rated local breweries and gastropubs that also serve food
-WHEN I view a particular food-serving brewery
-THEN I can view their cuisine, address, website URL and phone number
+THEN I am presented with local restaurants and a link to their page on Zomato
+WHEN I choose 'Near Me?'
+THEN I am presented with local restaurants based on my current location
 ```
+
+## How It Works
+
+BeerCrawlr is an app for beer-lovers and foodies who want to check out the local offerings from wherever they are or want to go. Four APIs are used to retrieve data for the user: OpenBreweryDB, Zomato, Algolia and the Geolocation API. Upon landing on the page, the user is able to easily navigate between three button options: 'Thirsty?', 'Hungry?' and 'Near Me' -- each of which uses a different API to populate the information of breweries and restaurants on the page. When entering a location into the search input, a location auto-fill 
+appears to further assist the user with their search. 
+
+![Image]()
 
 
 ## Built With
