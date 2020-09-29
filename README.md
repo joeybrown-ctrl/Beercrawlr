@@ -32,10 +32,25 @@ THEN I am presented with local restaurants based on my current location
 
 ## How It Works
 
-BeerCrawlr is an app for beer-lovers and foodies who want to check out the local offerings from wherever they are or want to go. Four APIs are used to retrieve data for the user: OpenBreweryDB, Zomato, Algolia and the Geolocation API. Upon landing on the page, the user is able to easily navigate between three button options: 'Thirsty?', 'Hungry?' and 'Near Me' -- each of which uses a different API to populate the information of breweries and restaurants on the page. When entering a location into the search input, a location auto-fill 
+![Image of top half of BeerCrawlr](https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/beercrawlr-top.png)
+<hr>
+
+BeerCrawlr is an app for beer-lovers and foodies who want to check out the local offerings from wherever they are or want to go. Four APIs are used to retrieve data for the user: OpenBreweryDB, Zomato, Algolia and the Geolocation API.
+
+![Image of search input and buttons](https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/beercrawlr-mid.png)
+<hr>
+
+![Image of search input with algolia](https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/beercrawlr-search.png)
+<hr>
+
+Upon landing on the page, the user is able to easily navigate between three button options: 'Thirsty?', 'Hungry?' and 'Near Me' -- each of which uses a different API to populate the information of breweries and restaurants on the page. When entering a location into the search input, a location auto-fill 
 appears to further assist the user with their search. 
 
-![Image]()
+![Image of thirsty search](https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/beercrawlr-thristy.png)
+<hr>
+
+![Image of hungry search](https://github.com/joeybrown-ctrl/Beercrawlr/blob/master/images/beercrawlr-hungry.png)
+<hr>
 
 
 ## Built With

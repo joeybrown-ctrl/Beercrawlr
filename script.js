@@ -120,7 +120,6 @@ function getRestaurantByName(selectedCity) {
 
 
   });
-}
 
 //adds algolia functionality to search bars
 function algoliaInput(input) {
