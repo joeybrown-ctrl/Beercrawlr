@@ -109,6 +109,13 @@ function getRestaurantByName(selectedCity) {
 
       }
 
+      if (restaurant.thumb === "") {
+        $("#img"+i).attr("src", "images/default.jpg");
+      }
+
+    }
+
+
     });
 
 
@@ -144,6 +151,7 @@ function getRestaurantByLoc(lat, long) {
     },
     method: "GET",
   }).then(function (response) {
+    console.log(response);
 
     for (i = 1; i < 7; i++) {
       const restaurants = response.restaurants;
@@ -153,7 +161,10 @@ function getRestaurantByLoc(lat, long) {
       $("#link" + i).text("Click Here for Menu: ").attr("href", restaurant.menu_url);
       $("#img" + i).attr("src", restaurant.thumb);
 
-      //add error catch for undefined restaurant type 
+      //adds default image if no image content is present in Zomato 
+      if (restaurant.thumb === "") {
+        $("#img"+i).attr("src", "images/default.jpg");
+      }
 
     }
 
@@ -182,7 +193,6 @@ $("#hungry").click(function () {
 });
 
 $("#nearMe").click(function () {
-  console.log("i was clicked")
   getLocation();
 });
 
