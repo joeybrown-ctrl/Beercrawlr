@@ -114,7 +114,8 @@ function getRestaurantByName(selectedCity) {
         $("#img" + i).attr("src", "images/default.jpg");
       }
 
-    });
+    })
+
   });
 
 };
