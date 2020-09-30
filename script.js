@@ -40,7 +40,7 @@ function getBrewery(selectedCity) {
 
       // code here to pick right image based on brewery type 
 
-      if (brewType === "Micro") {
+      if (brewType === "micro") {
         $("#img" + i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/tatiana-rodriguez-D_Rfjj3XV8M-unsplash.jpg");
       } else if (brewType === "regional") {
         $("#img" + i).attr("src", "https://raw.githubusercontent.com/joeybrown-ctrl/Beercrawlr/master/images/elevate-9EY5ckCX9iQ-unsplash.jpg");
